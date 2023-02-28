@@ -147,33 +147,15 @@ const Password = () => {
         </p>
         <div className="w-1/2 bg-white p-s2">
           <div>
-            {PASSWORD_INPUTS.map((input, i) => {
-              const [showPass, setShowPass] = useState(false);
-              return (
-                <div className="relative" key={i}>
-                  <Input
-                    type={showPass ? "text" : "password"}
-                    color="success"
-                    className="w-full my-s2"
-                    error={
-                      input.name === "oldPassword"
-                        ? undefined
-                        : effects.hasSubmitted &&
-                          payload.retypePassword !== payload.newPassword &&
-                          true
-                    }
-                    onChange={handleChange}
-                    {...input}
-                  />
-                  <button
-                    onClick={() => setShowPass(!showPass)}
-                    className="absolute top-1/2 p-s1 -right-1 -translate-y-1/2 -translate-x-1/2 z-10"
-                  >
-                    <Hide />
-                  </button>
-                </div>
-              );
-            })}
+            {PASSWORD_INPUTS.map((input, i) => (
+              <MappedInput
+                key={i}
+                input={input}
+                handleChange={handleChange}
+                payload={payload}
+                effects={effects}
+              />
+            ))}
           </div>
           <hr className="my-s4" />
           <div className="w-[210px] flex ml-auto">
@@ -196,5 +178,35 @@ const Password = () => {
     </div>
   );
 };
+
+const MappedInput = ({ input, payload, handleChange, effects }) => {
+  const [showPass, setShowPass] = useState(false);
+
+  return (
+    <div className="relative">
+      <Input
+        type={showPass ? "text" : "password"}
+        color="success"
+        className="w-full my-s2"
+        error={
+          input.name === "oldPassword"
+            ? undefined
+            : effects.hasSubmitted &&
+              payload.retypePassword !== payload.newPassword &&
+              true
+        }
+        onChange={handleChange}
+        {...input}
+      />
+      <button
+        onClick={() => setShowPass(!showPass)}
+        className="absolute top-1/2 p-s1 -right-1 -translate-y-1/2 -translate-x-1/2 z-10"
+      >
+        <Hide />
+      </button>
+    </div>
+  );
+};
+
 Profile.getLayout = DashboardLayout;
 export default Profile;
