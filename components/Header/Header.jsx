@@ -4,11 +4,17 @@ import Avatar from "@/public/images/avatar.png";
 import Image from "next/image";
 import { PROFILE_LINKS } from "@/constants";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [router.pathname]);
 
   return (
     <header className="px-s4 py-s2 flex items-center">
