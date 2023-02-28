@@ -17,7 +17,7 @@ const Header = () => {
   }, [router.pathname]);
 
   return (
-    <header className="px-s4 py-s2 flex items-center">
+    <header className="px-s4 py-s2 flex items-center bg-white">
       <div className="w-[240px]">
         <Logo />
       </div>

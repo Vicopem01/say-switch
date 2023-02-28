@@ -6,10 +6,11 @@ import Change from "@/public/icons/change.svg";
 import Avatar from "@/public/images/avatar.png";
 import Image from "next/image";
 import Hide from "@/public/icons/hide.svg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import Rolling from "@/public/loaders/rolling.svg";
 import { changePassword } from "@/services";
+import { useRouter } from "next/router";
 
 const PROFILE_INPUTS = [
   {
@@ -93,7 +94,9 @@ const PersonalInfo = () => {
     </div>
   );
 };
+
 const Password = () => {
+  const router = useRouter();
   const [payload, setPayload] = useState({
     oldPassword: "",
     newPassword: "",
@@ -104,6 +107,13 @@ const Password = () => {
     isLoading: false,
     hasSubmitted: false,
   });
+
+  const changePasswordRef = useRef(null);
+
+  useEffect(() => {
+    if (router.query.tab === "change-password")
+      changePasswordRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [changePasswordRef.current, router.query.tab]);
 
   const handleChange = (e) =>
     setPayload({ ...payload, [e.target.name]: e.target.value });
@@ -132,22 +142,11 @@ const Password = () => {
       <h2 className="title"> Change Password</h2>
 
       <div className="flex justify-between">
-        <p className="w-1/2">
+        <p className="w-1/2" ref={changePasswordRef}>
           Enter your current password and new password to change your password.
         </p>
         <div className="w-1/2 bg-white p-s2">
-          <div className="flex mb-s3">
-            <Image src={Avatar} alt="Profile Photo" />
-            <button className="flex items-center mx-s2">
-              <Change />
-              <span className="pl-s1">Change</span>
-            </button>
-            <button className="flex items-center">
-              <Cancel />
-              <span className="pl-s1">Remove</span>
-            </button>
-          </div>
-          <div className="">
+          <div>
             {PASSWORD_INPUTS.map((input, i) => {
               const [showPass, setShowPass] = useState(false);
               return (
@@ -182,7 +181,7 @@ const Password = () => {
               <Rolling />
             ) : (
               <>
-                <Button classes="w-2/5">Cancel</Button>
+                {/* <Button classes="w-2/5">Cancel</Button> */}
                 <Button
                   classes="min-w-max ml-s1.5"
                   onClick={handlePasswordChange}

@@ -41,7 +41,7 @@ export const PROFILE_LINKS = [
   },
   {
     text: "Change Password",
-    href: "/change-password",
+    href: "/profile?tab=change-password",
     icon: Password,
   },
   {

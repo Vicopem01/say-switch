@@ -15,6 +15,7 @@ module.exports = {
       white: "#FFFFFF",
       green: {
         DEFAULT: "#008037",
+        light: "#3D9215",
         bg: "#002B12",
       },
       effects: {
@@ -78,45 +79,45 @@ module.exports = {
         s24: "192px",
         s25: "200px",
       },
-      keyframes: {
-        roll: {
-          "0%": {
-            transform: "translate(-50%, -50%) rotate(0deg)",
-          },
-          "100%": {
-            transform: "translate(-50%, -50%) rotate(360deg)",
-          },
-        },
-        popup: {
-          "0%": {
-            transform: "scale(1)",
-          },
-          "50%": {
-            transform: "scale(0.5)",
-          },
-          "100%": {
-            transform: "scale(1)",
-          },
-        },
-        dropin: {
-          "0%": {
-            transform: "translateY(-12px)",
-            // height: '20px',
-          },
-          "90%": {
-            transform: "translateY(3px)",
-          },
-          "100%": {
-            transform: "translateY(0)",
-            // height: '16px',
-          },
-        },
-      },
-      animation: {
-        roll: "roll 1s linear infinite",
-        popup: "popup 0.4s ease-in-out 1",
-        dropin: "dropin 0.5s cubic-bezier(.25,.75,.5,1.25) 1",
-      },
+      // keyframes: {
+      //   roll: {
+      //     "0%": {
+      //       transform: "translate(-50%, -50%) rotate(0deg)",
+      //     },
+      //     "100%": {
+      //       transform: "translate(-50%, -50%) rotate(360deg)",
+      //     },
+      //   },
+      //   popup: {
+      //     "0%": {
+      //       transform: "scale(1)",
+      //     },
+      //     "50%": {
+      //       transform: "scale(0.5)",
+      //     },
+      //     "100%": {
+      //       transform: "scale(1)",
+      //     },
+      //   },
+      //   dropin: {
+      //     "0%": {
+      //       transform: "translateY(-12px)",
+      //       // height: '20px',
+      //     },
+      //     "90%": {
+      //       transform: "translateY(3px)",
+      //     },
+      //     "100%": {
+      //       transform: "translateY(0)",
+      //       // height: '16px',
+      //     },
+      //   },
+      // },
+      // animation: {
+      //   roll: "roll 1s linear infinite",
+      //   popup: "popup 0.4s ease-in-out 1",
+      //   dropin: "dropin 0.5s cubic-bezier(.25,.75,.5,1.25) 1",
+      // },
     },
   },
   plugins: [],

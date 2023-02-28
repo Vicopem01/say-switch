@@ -19,7 +19,7 @@ const Links = ({ container, links }) => {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="cursor-pointer">
       <div
         onClick={() => setOpen(!open)}
         className="flex justify-between p-s2 items-center"

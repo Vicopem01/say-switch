@@ -8,4 +8,6 @@ export const forgotPassword = async (data) =>
   await axios.post(base + "/api/v1/users/forgot-password", { email: data });
 
 export const changePassword = async (data) =>
-  await axios.put(base + "/api/v1/users/change-password", data);
+  await axios.put(base + "/api/v1/users/change-password", data, {
+    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+  });
