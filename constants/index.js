@@ -3,7 +3,6 @@ import Report from "@/public/icons/report.svg";
 import Profile from "@/public/icons/profile.svg";
 import Password from "@/public/icons/password.svg";
 import Home from "@/public/icons/home.svg";
-import Logout from "@/public/icons/logout.svg";
 
 export const SIDEBAR_LINKS = [
   {
@@ -48,11 +47,6 @@ export const PROFILE_LINKS = [
     text: "Report",
     href: "/report",
     icon: Report,
-  },
-  {
-    text: "Log out",
-    href: "/log-out",
-    icon: Logout,
   },
 ];
 

@@ -4,9 +4,10 @@ import Avatar from "@/public/images/avatar.png";
 import Image from "next/image";
 import { PROFILE_LINKS } from "@/constants";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useRouter } from "next/router";
+import Logout from "@/public/icons/logout.svg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +16,12 @@ const Header = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [router.pathname]);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    router.push("/");
+    window.location.reload();
+  };
 
   return (
     <header className="px-s4 py-s2 flex items-center bg-white">
@@ -35,11 +42,17 @@ const Header = () => {
           <div className="px-s4 py-s1 z-10 absolute w-[230px] top-12 -right-5 bg-white rounded-xs">
             <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
               {PROFILE_LINKS.map((link, i) => (
-                <Link href={link.href} className="flex items-center" key={i}>
-                  <link.icon />
-                  <span className="pl-s2 py-s1">{link.text}</span>
-                </Link>
+                <Fragment key={i}>
+                  <Link href={link.href} className="flex items-center" key={i}>
+                    <link.icon />
+                    <span className="pl-s2 py-s1">{link.text}</span>
+                  </Link>
+                </Fragment>
               ))}
+              <button className="flex items-center" onClick={handleLogout}>
+                <Logout />
+                <span className="pl-s2 py-s1">Log Out</span>
+              </button>
             </OutsideClickHandler>
           </div>
         )}

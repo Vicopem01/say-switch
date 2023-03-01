@@ -183,11 +183,11 @@ const MappedInput = ({ input, payload, handleChange, effects }) => {
   const [showPass, setShowPass] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative my-s2">
       <Input
         type={showPass ? "text" : "password"}
         color="success"
-        className="w-full my-s2"
+        className="w-full"
         error={
           input.name === "oldPassword"
             ? undefined
