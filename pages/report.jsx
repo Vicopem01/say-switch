@@ -2,8 +2,24 @@ import Button from "@/components/UI/Button";
 import Input from "@/components/UI/Input";
 import DashboardLayout from "@/layouts/dashboardLayout/dashboard";
 import Search from "@/public/icons/search.svg";
+import { getPaginatedTransactions } from "@/services";
+import { useEffect, useState } from "react";
 
 const Report = () => {
+  const [data, setData] = useState([]);
+  const getTransactions = async () => {
+    try {
+      const res = await getPaginatedTransactions();
+      setData(res.data.data.transactions);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
   return (
     <div>
       {/* top component */}
@@ -31,42 +47,48 @@ const Report = () => {
 
       {/* bottom component */}
       <div className="mt-s6">
-        <div className="flex justify-between">
-          <p className="font-medium">67,198, 260.05 Transactions</p>
-          <select className="p-s1">
-            <option>Action</option>
-          </select>
-        </div>
-        <table className="bg-white w-full mt-s3 text-center">
+        <p className="font-medium">67,198, 260.05 Transactions</p>
+        <table className="bg-white w-full mt-s3 text-center table">
           <thead>
             <tr>
               <th>Created</th>
               <th>Term ID</th>
               <th>Mer. ID</th>
               <th>PAN</th>
+              <th>Name</th>
               <th>Amount</th>
               <th>Description</th>
               <th>STAN</th>
               <th>Resp</th>
-              <th>Resp desc</th>
               <th>esp</th>
               <th>Ref</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Created</td>
-              <td>Term ID</td>
-              <td>Mer. ID</td>
-              <td>PAN</td>
-              <td>Amount</td>
-              <td>Description</td>
-              <td>STAN</td>
-              <td>Resp</td>
-              <td>Resp desc</td>
-              <td>esp</td>
-              <td>Ref</td>
-            </tr>
+            {data.map((item, i) => (
+              <tr key={i}>
+                <td>
+                  {new Date(item.created).toLocaleString("en-US", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  })}
+                </td>
+                <td>{item.terminalId}</td>
+                <td>{item.merchantId}</td>
+                <td>{item.PAN}</td>
+                <td>{item.name}</td>
+                <td>{item.amount}</td>
+                <td>{item.description}</td>
+                <td>{item.STAN}</td>
+                <td>{item.responseDescription}</td>
+                <td>{item.esp}</td>
+                <td>{item.reference}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

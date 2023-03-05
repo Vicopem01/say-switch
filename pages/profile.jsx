@@ -146,33 +146,35 @@ const Password = () => {
           Enter your current password and new password to change your password.
         </p>
         <div className="w-1/2 bg-white p-s2">
-          <div>
-            {PASSWORD_INPUTS.map((input, i) => (
-              <MappedInput
-                key={i}
-                input={input}
-                handleChange={handleChange}
-                payload={payload}
-                effects={effects}
-              />
-            ))}
-          </div>
-          <hr className="my-s4" />
-          <div className="w-[210px] flex ml-auto">
-            {effects.isLoading ? (
-              <Rolling />
-            ) : (
-              <>
-                {/* <Button classes="w-2/5">Cancel</Button> */}
-                <Button
-                  classes="min-w-max ml-s1.5"
-                  onClick={handlePasswordChange}
-                >
-                  Save Changes
-                </Button>
-              </>
-            )}
-          </div>
+          <form>
+            <div>
+              {PASSWORD_INPUTS.map((input, i) => (
+                <MappedInput
+                  key={i}
+                  input={input}
+                  handleChange={handleChange}
+                  payload={payload}
+                  effects={effects}
+                />
+              ))}
+            </div>
+            <hr className="my-s4" />
+            <div className="w-[210px] flex ml-auto">
+              {effects.isLoading ? (
+                <Rolling />
+              ) : (
+                <>
+                  {/* <Button classes="w-2/5">Cancel</Button> */}
+                  <Button
+                    classes="min-w-max ml-s1.5"
+                    onClick={handlePasswordChange}
+                  >
+                    Save Changes
+                  </Button>
+                </>
+              )}
+            </div>
+          </form>
         </div>
       </div>
     </div>

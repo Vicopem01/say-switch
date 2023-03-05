@@ -12,4 +12,20 @@
   .title {
     @apply text-xl font-bold;
   }
+
+  .table tr {
+    display: grid;
+    grid-template-columns: repeat(11, 120px);
+    text-align: left;
+    overflow-wrap: break-word;
+    text-transform: capitalize;
+  }
+  .table td {
+    padding: 12px;
+    font-size: 12px;
+  }
+  .table th {
+    padding: 12px;
+    font-size: 14px;
+  }
 }
