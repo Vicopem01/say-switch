@@ -8,12 +8,22 @@ import { Fragment, useEffect, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useRouter } from "next/router";
 import Logout from "@/public/icons/logout.svg";
+import { getUserProfile } from "@/services";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
+  const getAcc = async () => {
+    try {
+      const res = await getUserProfile();
+      console.log(res.data.data.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
+    getAcc();
     setIsOpen(false);
   }, [router.pathname]);
 

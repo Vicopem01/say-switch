@@ -1,9 +1,13 @@
+import { UserContext } from "@/context";
 import "@/styles/globals.css";
 import Head from "next/head";
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = ({ Component, pageProps }) => {
+  const [user, setUser] = useState({});
+
   return (
     <>
       <ToastContainer
@@ -23,7 +27,9 @@ const App = ({ Component, pageProps }) => {
         <meta name="description" content="Say Switch" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Layout Component={Component} pageProps={pageProps} />
+      <UserContext.Provider value={{ user, setUser }}>
+        <Layout Component={Component} pageProps={pageProps} />
+      </UserContext.Provider>
     </>
   );
 };

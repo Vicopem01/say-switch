@@ -24,3 +24,8 @@ export const getPaginatedTransactions = async (limit = 100, page = 1) =>
   await axios.get(`${users}/transactions?limit=${limit}&page=${page}`, {
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   });
+
+export const getUserProfile = async () =>
+  await axios.get(users + "/profile", {
+    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+  });
