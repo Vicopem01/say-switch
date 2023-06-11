@@ -7,6 +7,14 @@ import { useEffect, useState } from "react";
 
 const Report = () => {
   const [data, setData] = useState([]);
+  const [payload, setPayload] = useState({
+    startDate: "",
+    endDate: "",
+    terminalId: "",
+    stan: "",
+    rrn: "",
+  });
+
   const getTransactions = async () => {
     try {
       const res = await getPaginatedTransactions();
@@ -27,7 +35,13 @@ const Report = () => {
         <p className="w-1/2">Merchant Terminal Report</p>
         <div className="w-1/2 bg-white p-s3">
           <div className="grid grid-cols-2 gap-s2">
-            <Input label="" type="date" />
+            <Input
+              label=""
+              type="date"
+              onChange={(event) =>
+                setPayload({ ...payload, email: event.target.value })
+              }
+            />
             <Input label="" type="date" />
             <Input label="Terminal" />
             <Input label="STAN" />
